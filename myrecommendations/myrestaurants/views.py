@@ -11,6 +11,8 @@ from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 from models import RestaurantReview, Restaurant, Dish
 from forms import RestaurantForm, DishForm
+from django.views.generic import View
+from .models import Restaurant
 
 class RestaurantDetail(DetailView):
   model = Restaurant
@@ -32,7 +34,7 @@ class RestaurantCreate(CreateView):
 
 class DishCreate(CreateView):
   model = Dish
-  template_name = 'myrestaurants/form.html'
+  template_name = 'form.html'
   form_class = DishForm
   
   def form_valid(self, form):
@@ -48,4 +50,14 @@ def review(request, pk):
       user=request.user,
       restaurant=restaurant)
   review.save()
-  return HttpResponseRedirect(reverse('myrestaurants:restaurant_detail', args=(restaurant.id,)))
+  return HttpResponseRedirect(reverse('restaurant_detail', args=(restaurant.id,)))
+ 
+ 
+  
+def Restaurants(request):
+		Res = Restaurant.objects.all()
+		context = {
+		'Res' : Res,
+		
+		}
+		return render(request,"restaurant_detail.html",context)

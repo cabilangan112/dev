@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from myrestaurants.views import RestaurantDetail, RestaurantCreate , RestaurantList
-from django.utils import timezone
+from myrestaurants.views import RestaurantDetail, RestaurantCreate, Restaurants
+
 
 urlpatterns = [
 	url(r'^admin/', admin.site.urls),
+	url(r'^$', Restaurants, name= 'Restaurant'),
 	url(r'^restaurants/(?P<pk>[-\w]+)/$',RestaurantDetail.as_view(), name='Restaurant'),
 	url(r'^restaurants/create/\$',RestaurantCreate.as_view(), name='Restaurant'),
 	url(r'^restaurants/(?P<pk>[-\w]+)/$',RestaurantCreate.as_view()   ,name='Restaurant'),
-	url(r'^$',RestaurantList, name='res'),
+	
 ]

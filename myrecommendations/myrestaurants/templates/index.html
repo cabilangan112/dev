@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body style="text-align: center;" "background-color:powderblue;">
+<h1 style="font-family:verdana;" style="color:blue;">This is a Professors</h1>
+
+	<div id="header">
+  {% block header %}
+  {% if user.username %}<p>User {{ user.username }}</p>
+  {% else %}<p><a href="/login/">Sign in</a></p>{% endif %}
+  {% endblock %}
+</div>
+
+	
+	<h1 tyle="font-family:courier;">Res</h1>
+	<p>{{Res.count}} Res </p>
+	{% for rest in Res%}
+	<p tyle="font-family:courier;">{{ rest.name}}{{ rest.street}}</p>
+	{% endfor %}
+</body>
+</html>
